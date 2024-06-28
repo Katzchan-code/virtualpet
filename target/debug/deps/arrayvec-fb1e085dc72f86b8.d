@@ -1,0 +1,11 @@
+C:\Users\tyler\Documents\Code\virtualpet\target\debug\deps\libarrayvec-fb1e085dc72f86b8.rmeta: C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\lib.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\arrayvec_impl.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\arrayvec.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\array_string.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\char.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\errors.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\utils.rs
+
+C:\Users\tyler\Documents\Code\virtualpet\target\debug\deps\arrayvec-fb1e085dc72f86b8.d: C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\lib.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\arrayvec_impl.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\arrayvec.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\array_string.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\char.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\errors.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\utils.rs
+
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\lib.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\arrayvec_impl.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\arrayvec.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\array_string.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\char.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\errors.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.7.4\src\utils.rs:

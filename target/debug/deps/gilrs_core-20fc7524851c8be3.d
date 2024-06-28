@@ -1,0 +1,10 @@
+C:\Users\tyler\Documents\Code\virtualpet\target\debug\deps\libgilrs_core-20fc7524851c8be3.rmeta: C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\gilrs-core-0.5.12\src/lib.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\gilrs-core-0.5.12\src\platform\mod.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\gilrs-core-0.5.12\src\platform\windows_wgi\mod.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\gilrs-core-0.5.12\src\platform\windows_wgi\ff.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\gilrs-core-0.5.12\src\platform\windows_wgi\gamepad.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\gilrs-core-0.5.12\src\utils.rs
+
+C:\Users\tyler\Documents\Code\virtualpet\target\debug\deps\gilrs_core-20fc7524851c8be3.d: C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\gilrs-core-0.5.12\src/lib.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\gilrs-core-0.5.12\src\platform\mod.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\gilrs-core-0.5.12\src\platform\windows_wgi\mod.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\gilrs-core-0.5.12\src\platform\windows_wgi\ff.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\gilrs-core-0.5.12\src\platform\windows_wgi\gamepad.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\gilrs-core-0.5.12\src\utils.rs
+
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\gilrs-core-0.5.12\src/lib.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\gilrs-core-0.5.12\src\platform\mod.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\gilrs-core-0.5.12\src\platform\windows_wgi\mod.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\gilrs-core-0.5.12\src\platform\windows_wgi\ff.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\gilrs-core-0.5.12\src\platform\windows_wgi\gamepad.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\gilrs-core-0.5.12\src\utils.rs:

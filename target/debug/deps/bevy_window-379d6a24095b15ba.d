@@ -1,0 +1,10 @@
+C:\Users\tyler\Documents\Code\virtualpet\target\debug\deps\libbevy_window-379d6a24095b15ba.rmeta: C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_window-0.13.2\src\lib.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_window-0.13.2\src\cursor.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_window-0.13.2\src\event.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_window-0.13.2\src\raw_handle.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_window-0.13.2\src\system.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_window-0.13.2\src\window.rs
+
+C:\Users\tyler\Documents\Code\virtualpet\target\debug\deps\bevy_window-379d6a24095b15ba.d: C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_window-0.13.2\src\lib.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_window-0.13.2\src\cursor.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_window-0.13.2\src\event.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_window-0.13.2\src\raw_handle.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_window-0.13.2\src\system.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_window-0.13.2\src\window.rs
+
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_window-0.13.2\src\lib.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_window-0.13.2\src\cursor.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_window-0.13.2\src\event.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_window-0.13.2\src\raw_handle.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_window-0.13.2\src\system.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_window-0.13.2\src\window.rs:

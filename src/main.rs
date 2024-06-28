@@ -5,6 +5,8 @@ mod character_movement;
 mod debug;
 mod foodsys;
 
+//this is a test to see if i can work on code
+
 use bevy::{prelude::*, window::{EnabledButtons, WindowResolution}};
 use camera::CameraPlugin;
 use character::CharacterPlugin;
