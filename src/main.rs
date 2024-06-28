@@ -6,7 +6,7 @@ mod debug;
 mod foodsys;
 
 //this is a test to see if i can work on code
-//this is another test
+//this is another test fuck this stupid git shit
 
 use bevy::{prelude::*, window::{EnabledButtons, WindowResolution}};
 use camera::CameraPlugin;
