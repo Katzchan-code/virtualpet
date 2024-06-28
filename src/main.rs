@@ -5,10 +5,6 @@ mod character_movement;
 mod debug;
 mod foodsys;
 
-//this is a test to see if i can work on code
-//this is another test fuck this stupid git shit
-//i think this fixed it -laptop katz
-//i think this fixed it -PC katz
 
 use bevy::{prelude::*, window::{EnabledButtons, WindowResolution}};
 use camera::CameraPlugin;
@@ -22,7 +18,7 @@ fn main() {
         //Create 400x400 window and set the background color
         .add_plugins(DefaultPlugins.set(WindowPlugin {
             primary_window: Some(Window {
-                title: "VirtualPet v0.036".into(),
+                title: "VirtualPet v0.3.6".into(),
                 resolution: WindowResolution::new(400.0, 400.0).with_scale_factor_override(1.0),
                 resizable: false,
                 enabled_buttons: EnabledButtons {
