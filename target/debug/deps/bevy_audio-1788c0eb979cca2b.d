@@ -1,0 +1,10 @@
+C:\Users\tyler\Documents\Code\virtualpet\target\debug\deps\libbevy_audio-1788c0eb979cca2b.rmeta: C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_audio-0.13.2\src\lib.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_audio-0.13.2\src\audio.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_audio-0.13.2\src\audio_output.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_audio-0.13.2\src\audio_source.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_audio-0.13.2\src\pitch.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_audio-0.13.2\src\sinks.rs
+
+C:\Users\tyler\Documents\Code\virtualpet\target\debug\deps\bevy_audio-1788c0eb979cca2b.d: C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_audio-0.13.2\src\lib.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_audio-0.13.2\src\audio.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_audio-0.13.2\src\audio_output.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_audio-0.13.2\src\audio_source.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_audio-0.13.2\src\pitch.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_audio-0.13.2\src\sinks.rs
+
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_audio-0.13.2\src\lib.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_audio-0.13.2\src\audio.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_audio-0.13.2\src\audio_output.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_audio-0.13.2\src\audio_source.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_audio-0.13.2\src\pitch.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_audio-0.13.2\src\sinks.rs:

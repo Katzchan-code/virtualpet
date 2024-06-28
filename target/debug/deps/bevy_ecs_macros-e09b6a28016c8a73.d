@@ -1,0 +1,10 @@
+C:\Users\tyler\Documents\Code\virtualpet\target\debug\deps\bevy_ecs_macros-e09b6a28016c8a73.dll: C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_ecs_macros-0.13.2\src\lib.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_ecs_macros-0.13.2\src\component.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_ecs_macros-0.13.2\src\query_data.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_ecs_macros-0.13.2\src\query_filter.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_ecs_macros-0.13.2\src\states.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_ecs_macros-0.13.2\src\world_query.rs
+
+C:\Users\tyler\Documents\Code\virtualpet\target\debug\deps\bevy_ecs_macros-e09b6a28016c8a73.d: C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_ecs_macros-0.13.2\src\lib.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_ecs_macros-0.13.2\src\component.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_ecs_macros-0.13.2\src\query_data.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_ecs_macros-0.13.2\src\query_filter.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_ecs_macros-0.13.2\src\states.rs C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_ecs_macros-0.13.2\src\world_query.rs
+
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_ecs_macros-0.13.2\src\lib.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_ecs_macros-0.13.2\src\component.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_ecs_macros-0.13.2\src\query_data.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_ecs_macros-0.13.2\src\query_filter.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_ecs_macros-0.13.2\src\states.rs:
+C:\Users\tyler\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bevy_ecs_macros-0.13.2\src\world_query.rs:
