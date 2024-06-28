@@ -7,6 +7,7 @@ mod foodsys;
 
 //this is a test to see if i can work on code
 //this is another test fuck this stupid git shit
+//i think this fixed it -laptop katz
 
 use bevy::{prelude::*, window::{EnabledButtons, WindowResolution}};
 use camera::CameraPlugin;
