@@ -4,6 +4,7 @@ mod character_movement;
 //mod hud;
 mod debug;
 mod foodsys;
+mod playtimesys;
 
 
 use bevy::{prelude::*, window::{EnabledButtons, WindowResolution}};
@@ -11,6 +12,7 @@ use camera::CameraPlugin;
 use character::CharacterPlugin;
 use character_movement::MovementPlugin;
 use foodsys::FoodSysPlugin;
+use playtimesys::PlaytimePlugin;
 //use debug::DebugPlugin;
 
 fn main() {
@@ -39,7 +41,7 @@ fn main() {
         .add_plugins(CharacterPlugin)
         .add_plugins(MovementPlugin)
         .add_plugins(FoodSysPlugin)
-
+        .add_plugins(PlaytimePlugin)
         
         //debug plugin for debug reasons
         //.add_plugins(DebugPlugin)

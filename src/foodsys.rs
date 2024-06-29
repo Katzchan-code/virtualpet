@@ -51,12 +51,13 @@ fn bread_and_timer(
             -170.0,
             -100.0, 
             0.0),
+        visibility: Visibility::Visible,
             ..default()
             
     },
     HungerTime {
         timer: {
-            Timer::new(Duration::from_secs(60), TimerMode::Repeating)
+            Timer::new(Duration::from_secs(1), TimerMode::Repeating)
         }
     }, 
     HungerAmount {
@@ -64,7 +65,7 @@ fn bread_and_timer(
     },
     StartingPosition {
         y: -100.0
-    }
+    },
 ));
 
 }
@@ -78,6 +79,7 @@ fn bread_and_timer(
     time: Res<Time>,
 ) {
     for (bar, mut hunger_timer, mut hunger, mut position) in &mut bar_data{
+
         hunger_timer.timer.tick(time.delta());
         if hunger_timer.timer.finished() {
             position.y -= 12.5;
@@ -85,6 +87,7 @@ fn bread_and_timer(
             }
         if keyboard_input.just_pressed(KeyCode::KeyZ) {
             hunger.amount += 25.0;
+            println!("Z key was pressed to feed the pet");
             if hunger.amount > 100.0 {
                 hunger.amount = 100.0;
             } else {

@@ -8,12 +8,17 @@ impl Plugin for DebugPlugin {
     }
 }
 
-fn print_position(query: Query<(Entity, &Transform)>) {
+fn print_position(
+    query: Query<(Entity, &Transform)>,
+    keyboard_input: Res<ButtonInput<KeyCode>>,
+) {
     //logs entity id and position of each entity with a `Position` component
-    for (entity, transform) in query.iter() {
+    if keyboard_input.just_pressed(KeyCode::Insert) {
+            for (entity, transform) in query.iter() {
         info!(
             "Entity {:?} is at position {:?},",
             entity, transform.translation
-        );
+            );
+        }
     }
 }
