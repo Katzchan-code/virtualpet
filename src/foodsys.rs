@@ -87,7 +87,13 @@ fn bread_and_timer(
             }
         if keyboard_input.just_pressed(KeyCode::KeyZ) {
             hunger.amount += 25.0;
-            position.y += 12.5;
+            if hunger.amount > 100.0 {
+                hunger.amount = 100.0;
+                position.y = -100.0;
+            } else {
+                position.y += 12.5;
+            }
+
         }
         match hunger.amount {
             100.0 => {

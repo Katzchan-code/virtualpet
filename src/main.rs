@@ -18,7 +18,7 @@ fn main() {
         //Create 400x400 window and set the background color
         .add_plugins(DefaultPlugins.set(WindowPlugin {
             primary_window: Some(Window {
-                title: "VirtualPet v0.4.0".into(),
+                title: "VirtualPet v0.4.1".into(),
                 resolution: WindowResolution::new(400.0, 400.0).with_scale_factor_override(1.0),
                 resizable: false,
                 enabled_buttons: EnabledButtons {
