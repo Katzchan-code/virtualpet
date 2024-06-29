@@ -89,11 +89,9 @@ fn bread_and_timer(
             hunger.amount += 25.0;
             if hunger.amount > 100.0 {
                 hunger.amount = 100.0;
-                position.y = -100.0;
             } else {
                 position.y += 12.5;
             }
-
         }
         match hunger.amount {
             100.0 => {
