@@ -1,6 +1,5 @@
 use std::time::Duration;
 use bevy::{prelude::*, sprite::{MaterialMesh2dBundle, Mesh2dHandle}};
-use rand::Rng;
 use crate::character::Rat;
 
 #[derive(Component)]
@@ -57,7 +56,7 @@ fn bread_and_timer(
     },
     HungerTime {
         timer: {
-            Timer::new(Duration::from_secs(rand::thread_rng().gen_range(1..=2)), TimerMode::Repeating)
+            Timer::new(Duration::from_secs(60), TimerMode::Repeating)
         }
     }, 
     HungerAmount {
@@ -81,7 +80,6 @@ fn bread_and_timer(
     for (bar, mut hunger_timer, mut hunger, mut position) in &mut bar_data{
         hunger_timer.timer.tick(time.delta());
         if hunger_timer.timer.finished() {
-            hunger_timer.timer.tick(time.delta());
             position.y -= 12.5;
             hunger.amount -= 25.0;
             }
@@ -119,6 +117,7 @@ fn bread_and_timer(
                 -100.0, 
                 0.0   
                 ));
+                hunger_timer.timer.tick(time.delta());
             }
         }
     }

@@ -1,5 +1,5 @@
 use std::time::Duration;
-use rand::Rng;
+//use rand::Rng;
 
 use bevy::prelude::*;
 
@@ -30,12 +30,12 @@ fn spawn_character(
             },
         ..default()
     },
-    //starting movement direction
+
     Direction::Stand,
-    //timer for choosing when to move
+
     StandingTime {
         timer: {
-            Timer::new(Duration::from_secs(rand::thread_rng().gen_range(1..=2)), TimerMode::Repeating)
+            Timer::new(Duration::from_secs(1), TimerMode::Once)
         }
     }, 
     ));

@@ -1,7 +1,5 @@
-
 use bevy::prelude::*;
 use rand::Rng;
-
 pub struct MovementPlugin;
 impl Plugin for MovementPlugin {
     fn build(&self, app: &mut App) {
@@ -11,18 +9,14 @@ impl Plugin for MovementPlugin {
 
 #[derive(Component)]
 pub enum Direction {
-//    Left,
-//    Right,
     Stand,
-    Die, //huehuehuehueh
+    Die, 
 }
 
 #[derive(Component)]
 pub struct StandingTime {
     pub timer: Timer
 } 
-
-//old movement code in documents folder
 
 fn character_movement(
     time: Res<Time>,
@@ -37,6 +31,7 @@ fn character_movement(
          if keyboard_input.just_pressed(KeyCode::Space) {
             *character_direction = Direction::Die;
         }
+
         let x_location = transform.translation.x;
         let y_location = transform.translation.y;
         let xdirchance = rand::thread_rng().gen_range(1..=2);
