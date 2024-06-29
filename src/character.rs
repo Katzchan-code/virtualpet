@@ -5,7 +5,10 @@ use bevy::prelude::*;
 
 use crate::character_movement::Direction;
 use crate::character_movement::StandingTime;
-//use crate::character_movement::WalkingTime;
+
+#[derive(Component)]
+pub struct Rat; 
+
 
 pub struct CharacterPlugin;
 impl Plugin for CharacterPlugin {
@@ -18,7 +21,7 @@ fn spawn_character(
     mut commands: Commands,
     asset_server: Res<AssetServer>,
 ) {
-    commands.spawn((SpriteBundle {
+    commands.spawn((Rat, SpriteBundle {
         texture: asset_server.load("rat.png"),
         sprite: Sprite {
             flip_x: false,
