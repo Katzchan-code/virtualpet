@@ -1,6 +1,7 @@
 use std::time::Duration;
 use bevy::{prelude::*, sprite::{MaterialMesh2dBundle, Mesh2dHandle}};
 use crate::character::Rat;
+use crate::playtimesys::Activated;
 
 #[derive(Component)]
 pub struct HungerTime {
@@ -66,6 +67,9 @@ fn bread_and_timer(
     StartingPosition {
         y: -100.0
     },
+    Activated {
+        active: true
+    }
 ));
 
 }
@@ -78,13 +82,13 @@ fn bread_and_timer(
     keyboard_input: Res<ButtonInput<KeyCode>>,
     time: Res<Time>,
 ) {
-    for (bar, mut hunger_timer, mut hunger, mut position) in &mut bar_data{
-
+    for (bar, mut hunger_timer, mut hunger, mut position) in &mut bar_data {
         hunger_timer.timer.tick(time.delta());
         if hunger_timer.timer.finished() {
             position.y -= 12.5;
             hunger.amount -= 25.0;
             }
+
         if keyboard_input.just_pressed(KeyCode::KeyZ) {
             hunger.amount += 25.0;
             println!("Z key was pressed to feed the pet");
@@ -94,6 +98,9 @@ fn bread_and_timer(
                 position.y += 12.5;
             }
         }
+
+        
+
         match hunger.amount {
             100.0 => {
                 hunger_bar_modifications(&mut commands, bar, &mut hunger, &mut position, &mut meshes)
