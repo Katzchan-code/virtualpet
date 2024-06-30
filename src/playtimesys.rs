@@ -18,6 +18,12 @@ impl Plugin for PlaytimePlugin {
 #[derive(Component)]
 struct PlaytimeOverlay;
 
+#[derive(Component)]
+pub struct Activated {
+    pub active: bool
+}
+
+
 fn playtime_overlay(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
@@ -28,16 +34,21 @@ fn playtime_overlay(
         material: materials.add(Color::rgb(0.0, 0.0, 0.6)),
         visibility: Visibility::Hidden,
         ..default()
-    }));
+    },
+        Activated {
+            active:false
+        }
+));
 }
 
 fn playtime_window(
     keyboard_input: Res<ButtonInput<KeyCode>>,
     mut foodsys_timer: Query<&mut HungerTime>,
     mut movement_timer: Query<&mut StandingTime>,
-    mut hunger_bar: Query<Entity, With<HungerBar>>,
+    mut hunger_bar: Query<(Entity/*Querying for hungerbar activated state causes crash on startup
+                                    but only when queryed in this file , &mut Activated*/), With<HungerBar>>,
 
-    mut playtime: Query<Entity, With <PlaytimeOverlay>>,
+    mut playtime: Query<(Entity, &mut Activated), With <PlaytimeOverlay>>,
 
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
@@ -65,13 +76,20 @@ fn playtime_window(
         }   
     //end of pause/unpause code      cant seem to bundle them together, probably doing something wrong but heigh ho off to work we go
 
-    for bar in &mut hunger_bar {
+    for (bar) in &mut hunger_bar {
         
     }
 
     //overlay minigame screen
-    for playtime_overlay in &mut playtime {
-        commands.entity(playtime_overlay).insert(Visibility::Visible);
+    for (playtime_overlay, mut active_window) in &mut playtime {
+        if active_window.active == false {
+            commands.entity(playtime_overlay).insert(Visibility::Visible);
+            active_window.active = true;
+        }
+        else {
+            commands.entity(playtime_overlay).insert(Visibility::Hidden);
+            active_window.active = false;
+        }
     }
     }
 } 
