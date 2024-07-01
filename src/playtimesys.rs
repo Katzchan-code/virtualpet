@@ -19,8 +19,13 @@ impl Plugin for PlaytimePlugin {
 struct PlaytimeOverlay;
 
 #[derive(Component)]
-pub struct Activated {
-    pub active: bool
+pub struct StartActivated {
+    pub visible: bool
+}
+
+#[derive(Component)]
+pub struct StartDectivated {
+    pub visible: bool
 }
 
 
@@ -35,8 +40,8 @@ fn playtime_overlay(
         visibility: Visibility::Hidden,
         ..default()
     },
-        Activated {
-            active:false
+        StartDectivated {
+            visible:false
         }
 ));
 }
@@ -46,12 +51,8 @@ fn playtime_window(
     mut foodsys_timer: Query<&mut HungerTime>,
     mut movement_timer: Query<&mut StandingTime>,
 
-    mut rat_sprite: Query<(Entity, &mut Activated), (With<Rat>, Without<PlaytimeOverlay>, Without<HungerSprite>, Without<HungerBar>)>,
-
-    mut hunger_bar: Query<(Entity, &mut Activated), (With<HungerBar>, Without<PlaytimeOverlay>, Without<HungerSprite>, Without<Rat>)>,
-    mut hunger_sprite: Query<(Entity, &mut Activated), (With<HungerSprite>, Without<HungerBar>, Without<PlaytimeOverlay>, Without<Rat>)>,
-
-    mut playtime: Query<(Entity, &mut Activated), (With <PlaytimeOverlay>, Without<HungerBar>, Without<HungerSprite>, Without<Rat>)>,
+    mut started_visible: Query<(Entity, &mut StartActivated)>,
+    mut started_invisible: Query<(Entity, &mut StartDectivated)>,
 
     mut commands: Commands,
     //mut meshes: ResMut<Assets<Mesh>>,
@@ -66,6 +67,7 @@ fn playtime_window(
             else {
              hunger_timer.timer.unpause();
             }
+        }
 
         for mut standing_timer in &mut movement_timer {
             if standing_timer.timer.paused() == false {
@@ -77,52 +79,42 @@ fn playtime_window(
         }   
     
     //hide everything
-        for (rat, mut active_rat) in &mut rat_sprite {
-            if active_rat.active == true {
-                commands.entity(rat).insert(Visibility::Hidden);
-                active_rat.active = false;
+        for(entity, mut started_visible) in &mut started_visible {
+            if started_visible.visible == true {
+                commands.entity(entity).insert(Visibility::Hidden);
+                started_visible.visible = false;
             }
             else {
-                commands.entity(rat).insert(Visibility::Visible);
-                active_rat.active = true;
-            }
-        }
-
-        for (bar, mut active_bar) in &mut hunger_bar {
-            if active_bar.active == true {
-                commands.entity(bar).insert(Visibility::Hidden);
-                active_bar.active = false;
-            }
-            else {
-                commands.entity(bar).insert(Visibility::Visible);
-                active_bar.active = true;
-            }
-        }
-
-        for (hunger_sprite, mut active_hunger_icon) in &mut hunger_sprite {
-            if active_hunger_icon.active == true {
-                commands.entity(hunger_sprite).insert(Visibility::Hidden);
-                active_hunger_icon.active = false;
-            }
-            else {
-                commands.entity(hunger_sprite).insert(Visibility::Visible);
-                active_hunger_icon.active = true;
+                commands.entity(entity).insert(Visibility::Visible);
+                started_visible.visible = true;
             }
         }
 
     //overlay minigame screen
-        for (playtime_overlay, mut active_window) in &mut playtime {
-            if active_window.active == false {
+        for (playtime_overlay, mut active_window) in &mut started_invisible {
+            if active_window.visible == false {
                 commands.entity(playtime_overlay).insert(Visibility::Visible);
-                active_window.active = true;
+                active_window.visible = true;
                 println!("X key was pressed to open playtime menu")
             }
             else {
                 commands.entity(playtime_overlay).insert(Visibility::Hidden);
-                active_window.active = false;
+                active_window.visible = false;
                 println!("X key was pressed to close playtime menu")
             }
         }
-    }
+
+
+
+    } //if x is pressed end
 } 
+
+fn rock_paper_scissors (
+    keyboard_input: Res<ButtonInput<KeyCode>>,
+    mut meshes: ResMut<Assets<Mesh>>,
+    mut materials: ResMut<Assets<ColorMaterial>>
+) {
+    if keyboard_input.just_pressed(KeyCode::KeyX) {
+        
+    }
 }
