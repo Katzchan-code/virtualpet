@@ -4,6 +4,7 @@ use bevy::prelude::*;
 
 use crate::character_movement::Direction;
 use crate::character_movement::StandingTime;
+use crate::playtimesys::Activated;
 
 #[derive(Component)]
 pub struct Rat; 
@@ -36,6 +37,9 @@ fn spawn_character(
         timer: {
             Timer::new(Duration::from_secs(2), TimerMode::Repeating)
         }
-    }, 
+    },
+    Activated {
+        active: true
+    } 
     ));
 }

@@ -21,6 +21,9 @@ pub struct StartingPosition {
 #[derive(Component)]
 pub struct HungerBar; 
 
+#[derive(Component)]
+pub struct HungerSprite; 
+
 pub struct FoodSysPlugin;
 impl Plugin for FoodSysPlugin {
     fn build(&self, app: &mut App) {
@@ -35,7 +38,7 @@ fn bread_and_timer(
     mut materials: ResMut<Assets<ColorMaterial>>,
     asset_server: Res<AssetServer>,
 ) {
-    commands.spawn((SpriteBundle {
+    commands.spawn((HungerSprite, SpriteBundle {
         texture: asset_server.load("bread.png"),
         transform: Transform::from_xyz(
             -170.0,
@@ -44,6 +47,9 @@ fn bread_and_timer(
         ),
         ..default()
     },
+    Activated {
+        active: true
+    }
     ));
         commands.spawn((HungerBar, MaterialMesh2dBundle {
         mesh: Mesh2dHandle(meshes.add(Rectangle::new(25.0, 100.0))),
