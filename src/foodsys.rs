@@ -1,7 +1,7 @@
 use std::time::Duration;
 use bevy::{prelude::*, sprite::{MaterialMesh2dBundle, Mesh2dHandle}};
 use crate::character::Rat;
-use crate::playtimesys::Activated;
+use crate::playtimesys::StartActivated;
 
 #[derive(Component)]
 pub struct HungerTime {
@@ -47,8 +47,8 @@ fn bread_and_timer(
         ),
         ..default()
     },
-    Activated {
-        active: true
+    StartActivated {
+        visible: true
     }
     ));
         commands.spawn((HungerBar, MaterialMesh2dBundle {
@@ -73,8 +73,8 @@ fn bread_and_timer(
     StartingPosition {
         y: -100.0
     },
-    Activated {
-        active: true
+    StartActivated {
+        visible: true
     }
 ));
 
