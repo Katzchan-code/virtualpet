@@ -38,8 +38,6 @@ fn spawn_character(
             Timer::new(Duration::from_secs(2), TimerMode::Repeating)
         }
     },
-    StartActivated {
-        visible: true
-    } 
+    StartActivated
     ));
 }
