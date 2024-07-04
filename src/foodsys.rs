@@ -47,9 +47,7 @@ fn bread_and_timer(
         ),
         ..default()
     },
-    StartActivated {
-        visible: true
-    }
+    StartActivated
     ));
         commands.spawn((HungerBar, MaterialMesh2dBundle {
         mesh: Mesh2dHandle(meshes.add(Rectangle::new(25.0, 100.0))),
@@ -64,7 +62,7 @@ fn bread_and_timer(
     },
     HungerTime {
         timer: {
-            Timer::new(Duration::from_secs(1), TimerMode::Repeating)
+            Timer::new(Duration::from_secs(65), TimerMode::Repeating)
         }
     }, 
     HungerAmount {
@@ -73,9 +71,7 @@ fn bread_and_timer(
     StartingPosition {
         y: -100.0
     },
-    StartActivated {
-        visible: true
-    }
+    StartActivated
 ));
 
 }
