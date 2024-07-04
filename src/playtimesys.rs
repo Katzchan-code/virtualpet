@@ -224,7 +224,7 @@ fn rps_win (
             font_size: 20.0,
             ..default()
         }),
-        transform: Transform::from_xyz(0.0, 0.0, 1.0),
+        transform: Transform::from_xyz(0.0, 0.0, 2.0),
         ..default() 
     },
     GameTextTimer {
@@ -243,7 +243,7 @@ fn rps_lose (
             font_size: 20.0,
             ..default()
         }),
-        transform: Transform::from_xyz(0.0, 0.0, 1.0),
+        transform: Transform::from_xyz(0.0, 0.0, 2.0),
         ..default() 
     },
     GameTextTimer {
