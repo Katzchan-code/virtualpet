@@ -43,6 +43,11 @@ struct MainGameText;
 #[derive (Component)]
 struct WinGameText;
 
+#[derive (Component)]
+struct PlaytimeTimer {
+    ptimer: Timer
+}
+
 fn playtime_overlay(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
@@ -76,13 +81,31 @@ fn playtime_overlay(
             opponent_rps: rand::thread_rng().gen_range(1..=3)
         }
     ));
+
+    commands.spawn((MaterialMesh2dBundle {
+        mesh: Mesh2dHandle(meshes.add(Rectangle::new(25.0, 100.0))),
+        material: materials.add(Color::rgb(0.0, 0.5, 1.0)),
+        transform: Transform::from_xyz (
+            170.0,
+            -100.0,
+            0.0),
+        visibility: Visibility::Visible,
+        ..default()
+        },
+    PlaytimeTimer {
+        ptimer: {
+            Timer::new(Duration::from_secs(1), TimerMode::Repeating)
+        }
+    }));
 }
+
 
 fn playtime_window(
     time: Res<Time>,
     mut keyboard_input: ResMut<ButtonInput<KeyCode>>,
     mut foodsys_timer: Query<&mut HungerTime>,
     mut movement_timer: Query<&mut StandingTime>,
+    mut playtime_timer: Query<&mut PlaytimeTimer>,
 
     mut toggle: Query<&mut Toggle>,
     mut started_visible: Query<Entity, With<StartActivated>>,
