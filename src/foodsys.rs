@@ -62,7 +62,7 @@ fn bread_and_timer(
     },
     HungerTime {
         timer: {
-            Timer::new(Duration::from_secs(65), TimerMode::Repeating)
+            Timer::new(Duration::from_secs(1), TimerMode::Repeating)
         }
     }, 
     HungerAmount {
@@ -101,53 +101,18 @@ fn bread_and_timer(
             }
         }
 
-        
-
-        match hunger.amount {
-            100.0 => {
-                hunger_bar_modifications(&mut commands, bar, &mut hunger, &mut position, &mut meshes)
+        if hunger.amount == 0.0 {
+            commands.entity(bar).despawn();
+            for rat in &mut rat_data{
+                commands.entity(rat).despawn();
             }
-            75.0 => {
-                hunger_bar_modifications(&mut commands, bar, &mut hunger, &mut position, &mut meshes)
-            },
-            50.0 => {
-                hunger_bar_modifications(&mut commands, bar, &mut hunger, &mut position, &mut meshes)
-            },
-            25.0 => {
-                hunger_bar_modifications(&mut commands, bar, &mut hunger, &mut position, &mut meshes)
-            },
-            0.0 => {
-                commands.entity(bar).despawn();
-                for rat in &mut rat_data{
-                    commands.entity(rat).despawn();
-                }
-            }
-            _ => {
-                commands.entity(bar).insert(Mesh2dHandle(meshes.add(Rectangle::new(25.0, 100.0))));
-                commands.entity(bar).insert(Transform::from_xyz(
-                -170.0,
-                -100.0, 
-                0.0   
-                ));
-                hunger_timer.timer.tick(time.delta());
-            }
+        } else {
+            commands.entity(bar).insert(Mesh2dHandle(meshes.add(Rectangle::new(25.0, hunger.amount))));
+            commands.entity(bar).insert(Transform::from_xyz(
+            -170.0,
+            position.y, 
+            0.0   
+            ));
         }
     }
 }
-
-fn hunger_bar_modifications (
-    commands: &mut Commands,
-    bar: Entity,
-    hunger: &mut HungerAmount,
-    position: &mut StartingPosition,
-    meshes: &mut ResMut<Assets<Mesh>>,
-)
-{
-    commands.entity(bar).insert(Mesh2dHandle(meshes.add(Rectangle::new(25.0, hunger.amount))));
-    commands.entity(bar).insert(Transform::from_xyz(
-    -170.0,
-    position.y, 
-    0.0   
-    ));
-}
-
