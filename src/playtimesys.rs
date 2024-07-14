@@ -56,7 +56,7 @@ fn playtime_overlay(
     commands.spawn((MaterialMesh2dBundle {
         mesh: Mesh2dHandle(meshes.add(Rectangle::new(500.0, 500.0))),
         material: materials.add(Color::rgb(0.0, 0.0, 0.6)),
-        transform: Transform::from_xyz(0.0, 0.0, 0.0),
+        transform: Transform::from_xyz(0.0, 0.0, 1.0),
         visibility: Visibility::Hidden,
         ..default()
     },
@@ -71,7 +71,7 @@ fn playtime_overlay(
             font_size: 20.0,
             ..default()
         }),
-        transform: Transform::from_xyz(-20.0, 175.0, 10.0),
+        transform: Transform::from_xyz(-20.0, 175.0, 2.0),
         visibility: Visibility::Hidden,
         ..default() 
         },
@@ -92,6 +92,7 @@ fn playtime_overlay(
         visibility: Visibility::Visible,
         ..default()
         },
+    StartActivated,
     PlaytimeTimer {
         ptimer: {
             Timer::new(Duration::from_secs(1), TimerMode::Repeating)
@@ -193,6 +194,7 @@ fn rock_paper_scissors (
     keyboard_input: ResMut<ButtonInput<KeyCode>>,
     mut commands: Commands,
     mut ai_rps: Query<(Entity, &mut Playtime)>,
+    mut toggle: Query<&mut Toggle>
 
 ) {
     let rock = 1;
@@ -202,40 +204,44 @@ fn rock_paper_scissors (
     let input_paper = KeyCode::Digit2;
     let input_scissors = KeyCode::Digit3;
 
-    for (opponent, mut rps) in &mut ai_rps {
-        if rps.opponent_rps == rock {
-            if keyboard_input.just_pressed(input_paper) {
-                rps_win(&mut commands);
-                commands.entity(opponent).insert(Playtime {opponent_rps: rand::thread_rng().gen_range(1..=3)});
-            } else if keyboard_input.just_pressed(input_rock) {
-                rps_lose(&mut commands);
-            } else if keyboard_input.just_pressed(input_scissors) {
-                rps_lose(&mut commands);
+    for toggled in &mut toggle {
+        if toggled.toggle == true {
+            for (opponent, mut rps) in &mut ai_rps {
+                if rps.opponent_rps == rock {
+                    if keyboard_input.just_pressed(input_paper) {
+                        rps_win(&mut commands);
+                        commands.entity(opponent).insert(Playtime {opponent_rps: rand::thread_rng().gen_range(1..=3)});
+                    } else if keyboard_input.just_pressed(input_rock) {
+                        rps_lose(&mut commands);
+                    } else if keyboard_input.just_pressed(input_scissors) {
+                        rps_lose(&mut commands);
+                    }
+            
+                } else if rps.opponent_rps == paper {
+                    if keyboard_input.just_pressed(input_scissors) {
+                        rps_win(&mut commands);
+                        rps.opponent_rps = rand::thread_rng().gen_range(1..=3);
+                        commands.entity(opponent).insert(Playtime {opponent_rps: rand::thread_rng().gen_range(1..=3)});
+                    } else if keyboard_input.just_pressed(input_rock) {
+                        rps_lose(&mut commands);
+                    } else if keyboard_input.just_pressed(input_paper) {
+                        rps_lose(&mut commands);
+                    }
+            
+                } else if rps.opponent_rps == scissors{
+                    if keyboard_input.just_pressed(input_rock) {
+                        rps_win(&mut commands);
+                        rps.opponent_rps = rand::thread_rng().gen_range(1..=3);
+                        commands.entity(opponent).insert(Playtime {opponent_rps: rand::thread_rng().gen_range(1..=3)});
+                    } else if keyboard_input.just_pressed(input_rock) {
+                        rps_lose(&mut commands);
+                    } else if keyboard_input.just_pressed(input_paper) {
+                        rps_lose(&mut commands);
+                    }
+                }
             }
-    
-        } else if rps.opponent_rps == paper {
-            if keyboard_input.just_pressed(input_scissors) {
-                rps_win(&mut commands);
-                rps.opponent_rps = rand::thread_rng().gen_range(1..=3);
-                commands.entity(opponent).insert(Playtime {opponent_rps: rand::thread_rng().gen_range(1..=3)});
-            } else if keyboard_input.just_pressed(input_rock) {
-                rps_lose(&mut commands);
-            } else if keyboard_input.just_pressed(input_paper) {
-                rps_lose(&mut commands);
-            }
-    
-        } else if rps.opponent_rps == scissors{
-            if keyboard_input.just_pressed(input_rock) {
-                rps_win(&mut commands);
-                rps.opponent_rps = rand::thread_rng().gen_range(1..=3);
-                commands.entity(opponent).insert(Playtime {opponent_rps: rand::thread_rng().gen_range(1..=3)});
-            } else if keyboard_input.just_pressed(input_rock) {
-                rps_lose(&mut commands);
-            } else if keyboard_input.just_pressed(input_paper) {
-                rps_lose(&mut commands);
-            }
-        }
-    }
+        } 
+    } 
 }
 
 
