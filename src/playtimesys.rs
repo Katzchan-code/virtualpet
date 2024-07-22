@@ -3,9 +3,11 @@ use bevy::prelude::*;
 use bevy::sprite::{MaterialMesh2dBundle, Mesh2dHandle};
 use rand::Rng;
 
-
-use crate::foodsys:: HungerTime;
-use crate::character_movement::StandingTime;
+use crate::components::{
+    StartActivated, StartDectivated, MainGameText, WinGameText,
+    Playtime, PlaytimeTimer, GameTextTimer, Toggle, HungerTime,
+    StandingTime, 
+};
 
 pub struct PlaytimePlugin;
 impl Plugin for PlaytimePlugin {
@@ -16,37 +18,6 @@ impl Plugin for PlaytimePlugin {
     }
 }
 
-#[derive(Component)]
-struct GameTextTimer {
-    timer: Timer
-}
-
-#[derive(Component)]
-struct Playtime {
-    opponent_rps: i32
-}
-
-#[derive(Component)]
-pub struct StartActivated;
-
-#[derive(Component)]
-pub struct StartDectivated;
-
-#[derive(Component)]
-pub struct Toggle {
-    pub toggle: bool
-}
-
-#[derive (Component)]
-struct MainGameText;
-
-#[derive (Component)]
-struct WinGameText;
-
-#[derive (Component)]
-struct PlaytimeTimer {
-    ptimer: Timer
-}
 
 fn playtime_overlay(
     mut commands: Commands,

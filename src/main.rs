@@ -1,3 +1,4 @@
+mod components;
 mod camera;
 mod character;
 mod character_movement;

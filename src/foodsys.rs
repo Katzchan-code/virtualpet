@@ -1,28 +1,6 @@
 use std::time::Duration;
 use bevy::{prelude::*, sprite::{MaterialMesh2dBundle, Mesh2dHandle}};
-use crate::character::Rat;
-use crate::playtimesys::StartActivated;
-
-#[derive(Component)]
-pub struct HungerTime {
-   pub timer: Timer,
-}
-
-#[derive(Component)]
-pub struct HungerAmount {
-   amount: f32
-}
-
-#[derive(Component)]
-pub struct StartingPosition {
-   y: f32
-}
-
-#[derive(Component)]
-pub struct HungerBar; 
-
-#[derive(Component)]
-pub struct HungerSprite; 
+use crate::components::{HungerTime, HungerAmount, StartingPosition, StartActivated, Rat};
 
 pub struct FoodSysPlugin;
 impl Plugin for FoodSysPlugin {
@@ -38,7 +16,7 @@ fn bread_and_timer(
     mut materials: ResMut<Assets<ColorMaterial>>,
     asset_server: Res<AssetServer>,
 ) {
-    commands.spawn((HungerSprite, SpriteBundle {
+    commands.spawn((SpriteBundle {
         texture: asset_server.load("bread.png"),
         transform: Transform::from_xyz(
             -170.0,
@@ -49,7 +27,7 @@ fn bread_and_timer(
     },
     StartActivated
     ));
-        commands.spawn((HungerBar, MaterialMesh2dBundle {
+        commands.spawn((MaterialMesh2dBundle {
         mesh: Mesh2dHandle(meshes.add(Rectangle::new(25.0, 100.0))),
         material: materials.add(Color::rgb(0.9, 0.1, 0.1)),
         transform: Transform::from_xyz(

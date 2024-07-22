@@ -1,22 +1,13 @@
 use bevy::prelude::*;
 use rand::Rng;
+use crate::components::{Direction, StandingTime};
+
 pub struct MovementPlugin;
 impl Plugin for MovementPlugin {
     fn build(&self, app: &mut App) {
         app.add_systems(Update, character_movement);
     }
 }
-
-#[derive(Component)]
-pub enum Direction {
-    Stand,
-    Die, 
-}
-
-#[derive(Component)]
-pub struct StandingTime {
-    pub timer: Timer
-} 
 
 fn character_movement(
     time: Res<Time>,

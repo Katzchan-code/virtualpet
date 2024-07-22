@@ -1,13 +1,6 @@
 use std::time::Duration;
-
 use bevy::prelude::*;
-
-use crate::character_movement::Direction;
-use crate::character_movement::StandingTime;
-use crate::playtimesys::StartActivated;
-
-#[derive(Component)]
-pub struct Rat; 
+use crate::components::{Rat, Direction, StandingTime, StartActivated};
 
 
 pub struct CharacterPlugin;
