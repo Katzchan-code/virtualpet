@@ -1,6 +1,6 @@
 use std::time::Duration;
 use bevy::{prelude::*, sprite::{MaterialMesh2dBundle, Mesh2dHandle}};
-use crate::components::{HungerTime, HungerAmount, StartingPosition, StartActivated, Rat};
+use crate::components::{HungerTime, HungerAmount, StartingPosition, StartActivated, Rat, HungerBar, PlaytimeBar};
 
 pub struct FoodSysPlugin;
 impl Plugin for FoodSysPlugin {
@@ -27,7 +27,7 @@ fn bread_and_timer(
     },
     StartActivated
     ));
-        commands.spawn((MaterialMesh2dBundle {
+        commands.spawn((HungerBar, MaterialMesh2dBundle {
         mesh: Mesh2dHandle(meshes.add(Rectangle::new(25.0, 100.0))),
         material: materials.add(Color::rgb(0.9, 0.1, 0.1)),
         transform: Transform::from_xyz(
@@ -40,7 +40,7 @@ fn bread_and_timer(
     },
     HungerTime {
         timer: {
-            Timer::new(Duration::from_secs(1), TimerMode::Repeating)
+            Timer::new(Duration::from_secs(240), TimerMode::Repeating)
         }
     }, 
     HungerAmount {
@@ -56,7 +56,7 @@ fn bread_and_timer(
 
  fn hunger(
     mut commands: Commands,
-    mut bar_data: Query<(Entity, &mut HungerTime, &mut HungerAmount, &mut StartingPosition)>,
+    mut bar_data: Query<(Entity, &mut HungerTime, &mut HungerAmount, &mut StartingPosition), Without<PlaytimeBar>>,
     mut rat_data: Query<Entity, With<Rat>>,
     mut meshes: ResMut<Assets<Mesh>>,
     keyboard_input: Res<ButtonInput<KeyCode>>,
