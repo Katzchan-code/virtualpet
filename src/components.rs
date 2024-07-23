@@ -4,6 +4,12 @@ use bevy::prelude::*;
 pub struct Rat; 
 
 #[derive(Component)]
+pub struct HungerBar; 
+
+#[derive(Component)]
+pub struct PlaytimeBar; 
+
+#[derive(Component)]
 pub enum Direction {
     Stand,
     Die, 
@@ -21,7 +27,7 @@ pub struct HungerTime {
 
 #[derive (Component)]
 pub struct PlaytimeTimer {
-    pub ptimer: Timer
+    pub timer: Timer
 }
 
 #[derive(Component)]
@@ -32,6 +38,11 @@ pub struct GameTextTimer {
 #[derive(Component)]
 pub struct HungerAmount {
    pub amount: f32
+}
+
+#[derive(Component)]
+pub struct PlaytimeAmount {
+    pub amount: f32
 }
 
 #[derive(Component)]
