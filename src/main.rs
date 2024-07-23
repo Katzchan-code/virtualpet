@@ -2,7 +2,6 @@ mod components;
 mod camera;
 mod character;
 mod character_movement;
-//mod hud;
 mod debug;
 mod foodsys;
 mod playtimesys;
