@@ -28,7 +28,7 @@ fn spawn_character(
     //timer for choosing when to move
     StandingTime {
         timer: {
-            Timer::new(Duration::from_secs(2), TimerMode::Repeating)
+            Timer::new(Duration::from_secs(3), TimerMode::Repeating)
         }
     },
     StartActivated
