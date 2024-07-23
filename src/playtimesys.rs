@@ -6,7 +6,8 @@ use rand::Rng;
 use crate::components::{
     StartActivated, StartDectivated, MainGameText, WinGameText,
     Playtime, PlaytimeTimer, GameTextTimer, Toggle, HungerTime,
-    StandingTime, 
+    StandingTime, PlaytimeAmount, StartingPosition, PlaytimeBar,
+    HungerBar, Rat
 };
 
 pub struct PlaytimePlugin;
@@ -15,6 +16,7 @@ impl Plugin for PlaytimePlugin {
         app.add_systems(Startup, playtime_overlay);
         app.add_systems(Update, playtime_window);
         app.add_systems(Update, rock_paper_scissors);
+        app.add_systems(Update, playtime_decay);
     }
 }
 
@@ -53,7 +55,7 @@ fn playtime_overlay(
         }
     ));
 
-    commands.spawn((MaterialMesh2dBundle {
+    commands.spawn((PlaytimeBar, MaterialMesh2dBundle {
         mesh: Mesh2dHandle(meshes.add(Rectangle::new(25.0, 100.0))),
         material: materials.add(Color::rgb(0.0, 0.5, 1.0)),
         transform: Transform::from_xyz (
@@ -65,19 +67,54 @@ fn playtime_overlay(
         },
     StartActivated,
     PlaytimeTimer {
-        ptimer: {
-            Timer::new(Duration::from_secs(1), TimerMode::Repeating)
+        timer: {
+            Timer::new(Duration::from_secs(120), TimerMode::Repeating)
         }
-    }));
+    },
+    PlaytimeAmount {
+        amount: 100.0
+    },
+    StartingPosition {
+        y: -100.0
+    }
+    ));
 }
 
+fn playtime_decay(
+    time: Res<Time>,
+    mut bar_data: Query<(Entity, &mut PlaytimeTimer, &mut PlaytimeAmount, &mut StartingPosition), Without<HungerBar>>,
+    mut rat_data: Query<Entity, With<Rat>>,
+    mut commands: Commands,
+    mut meshes: ResMut<Assets<Mesh>>,
+) {
+    for (bar, mut play_timer, mut play, mut position) in &mut bar_data {
+        play_timer.timer.tick(time.delta());
+        if play_timer.timer.finished() {
+            position.y -= 12.5;
+            play.amount -= 25.0;
+            }
+
+        if play.amount == 0.0 {
+            commands.entity(bar).despawn();
+            for rat in &mut rat_data {
+                commands.entity(rat).despawn();
+            }
+        } else {
+            commands.entity(bar).insert(Mesh2dHandle(meshes.add(Rectangle::new(25.0, play.amount))));
+            commands.entity(bar).insert(Transform::from_xyz(
+            170.0,
+            position.y, 
+            0.0   
+            ));
+        }
+    }
+}
 
 fn playtime_window(
     time: Res<Time>,
     mut keyboard_input: ResMut<ButtonInput<KeyCode>>,
     mut foodsys_timer: Query<&mut HungerTime>,
     mut movement_timer: Query<&mut StandingTime>,
-    mut playtime_timer: Query<&mut PlaytimeTimer>,
 
     mut toggle: Query<&mut Toggle>,
     mut started_visible: Query<Entity, With<StartActivated>>,
@@ -85,8 +122,9 @@ fn playtime_window(
     mut win_text: Query<(Entity, &mut GameTextTimer)>,
     mut commands: Commands,
     //mut meshes: ResMut<Assets<Mesh>>,
-    //mut materials: ResMut<Assets<ColorMaterial>>
 ) {
+    
+
     if keyboard_input.clear_just_pressed(KeyCode::KeyX) {
         for mut toggled in &mut toggle {
             if toggled.toggle == false {
@@ -104,6 +142,7 @@ fn playtime_window(
             show_pet(&mut foodsys_timer, &mut movement_timer, &mut started_visible, &mut started_invisible, &mut commands);
         }      
     }
+
     for(text, mut text_timer) in &mut win_text {
         text_timer.timer.tick(time.delta());
         if text_timer.timer.finished() {
@@ -128,11 +167,11 @@ fn hide_pet (
         }   
 
     for entity in started_visible {
-        commands.entity(entity).insert(Visibility::Hidden);
+        commands.entity(entity).try_insert(Visibility::Hidden);
         }
 
     for playtime_overlay in started_invisible {
-        commands.entity(playtime_overlay).insert(Visibility::Visible);
+        commands.entity(playtime_overlay).try_insert(Visibility::Visible);
         }
 } 
 
@@ -148,16 +187,17 @@ fn show_pet (
         hunger_timer.timer.unpause();
     }
 
+
     for mut standing_timer in movement_timer {
         standing_timer.timer.unpause();
     }
 
     for entity in started_visible {
-        commands.entity(entity).insert(Visibility::Visible);
+        commands.entity(entity).try_insert(Visibility::Visible);
     }
 
     for playtime_overlay in started_invisible {
-        commands.entity(playtime_overlay).insert(Visibility::Hidden);
+        commands.entity(playtime_overlay).try_insert(Visibility::Hidden);
     }
 }
 
@@ -165,50 +205,43 @@ fn rock_paper_scissors (
     keyboard_input: ResMut<ButtonInput<KeyCode>>,
     mut commands: Commands,
     mut ai_rps: Query<(Entity, &mut Playtime)>,
-    mut toggle: Query<&mut Toggle>
-
+    mut toggle: Query<&mut Toggle>,
+    mut playtime_bar_data: Query<(&mut PlaytimeAmount, &mut StartingPosition), With<PlaytimeBar>>,
 ) {
-    let rock = 1;
-    let paper = 2;
-    let scissors = 3;
-    let input_rock = KeyCode::Digit1;
-    let input_paper = KeyCode::Digit2;
-    let input_scissors = KeyCode::Digit3;
+    //rock = 1;
+    //paper = 2;
+    //scissors = 3;
+    let input_rock =  keyboard_input.just_pressed(KeyCode::Digit1);
+    let input_paper = keyboard_input.just_pressed(KeyCode::Digit2);
+    let input_scissors = keyboard_input.just_pressed(KeyCode::Digit3);
 
     for toggled in &mut toggle {
         if toggled.toggle == true {
-            for (opponent, mut rps) in &mut ai_rps {
-                if rps.opponent_rps == rock {
-                    if keyboard_input.just_pressed(input_paper) {
-                        rps_win(&mut commands);
-                        commands.entity(opponent).insert(Playtime {opponent_rps: rand::thread_rng().gen_range(1..=3)});
-                    } else if keyboard_input.just_pressed(input_rock) {
-                        rps_lose(&mut commands);
-                    } else if keyboard_input.just_pressed(input_scissors) {
-                        rps_lose(&mut commands);
+            for (opponent, rps) in &mut ai_rps {
+                match rps.opponent_rps {
+                    1 => {
+                        if input_paper {
+                            rps_win(&mut commands, &mut playtime_bar_data);
+                            commands.entity(opponent).insert(Playtime {opponent_rps: rand::thread_rng().gen_range(1..=3)});
+                        } else if input_rock | input_scissors {
+                            rps_lose(&mut commands);
+                        } 
                     }
-            
-                } else if rps.opponent_rps == paper {
-                    if keyboard_input.just_pressed(input_scissors) {
-                        rps_win(&mut commands);
-                        rps.opponent_rps = rand::thread_rng().gen_range(1..=3);
-                        commands.entity(opponent).insert(Playtime {opponent_rps: rand::thread_rng().gen_range(1..=3)});
-                    } else if keyboard_input.just_pressed(input_rock) {
-                        rps_lose(&mut commands);
-                    } else if keyboard_input.just_pressed(input_paper) {
-                        rps_lose(&mut commands);
+                    2 => {
+                        if input_scissors {
+                            rps_win(&mut commands, &mut playtime_bar_data);
+                            commands.entity(opponent).insert(Playtime {opponent_rps: rand::thread_rng().gen_range(1..=3)});
+                        } else if input_rock | input_scissors {
+                            rps_lose(&mut commands);
+                        }
                     }
-            
-                } else if rps.opponent_rps == scissors{
-                    if keyboard_input.just_pressed(input_rock) {
-                        rps_win(&mut commands);
-                        rps.opponent_rps = rand::thread_rng().gen_range(1..=3);
-                        commands.entity(opponent).insert(Playtime {opponent_rps: rand::thread_rng().gen_range(1..=3)});
-                    } else if keyboard_input.just_pressed(input_rock) {
-                        rps_lose(&mut commands);
-                    } else if keyboard_input.just_pressed(input_paper) {
-                        rps_lose(&mut commands);
+                    3 => {
+                        if input_rock {
+                            rps_win(&mut commands, &mut playtime_bar_data);
+                            commands.entity(opponent).insert(Playtime {opponent_rps: rand::thread_rng().gen_range(1..=3)});
+                        }
                     }
+                    _ =>{}
                 }
             }
         } 
@@ -218,6 +251,7 @@ fn rock_paper_scissors (
 
 fn rps_win (
     commands: &mut Commands,
+    playtime_bar_data: &mut Query<(&mut PlaytimeAmount, &mut StartingPosition), With<PlaytimeBar>>,
 ) {
     commands.spawn((WinGameText, Text2dBundle { 
         text: Text::from_section("You win!",TextStyle {
@@ -233,6 +267,14 @@ fn rps_win (
         }
     }
 ));
+    for (mut play, mut position) in playtime_bar_data {
+        play.amount += 25.0;
+        if play.amount > 100.0 {
+            play.amount = 100.0;
+        } else {
+            position.y += 12.5;
+        }
+    }
 }
 
 fn rps_lose (
