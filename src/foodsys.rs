@@ -16,17 +16,6 @@ fn bread_and_timer(
     mut materials: ResMut<Assets<ColorMaterial>>,
     asset_server: Res<AssetServer>,
 ) {
-    commands.spawn((SpriteBundle {
-        texture: asset_server.load("bread.png"),
-        transform: Transform::from_xyz(
-            -170.0,
-            -170.0, 
-            0.0
-        ),
-        ..default()
-    },
-    StartActivated
-    ));
         commands.spawn((HungerBar, MaterialMesh2dBundle {
         mesh: Mesh2dHandle(meshes.add(Rectangle::new(25.0, 100.0))),
         material: materials.add(Color::rgb(0.9, 0.1, 0.1)),
