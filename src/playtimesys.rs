@@ -239,6 +239,8 @@ fn rock_paper_scissors (
                         if input_rock {
                             rps_win(&mut commands, &mut playtime_bar_data);
                             commands.entity(opponent).insert(Playtime {opponent_rps: rand::thread_rng().gen_range(1..=3)});
+                        } else if input_paper | input_scissors {
+                            rps_lose(&mut commands);
                         }
                     }
                     _ =>{}
